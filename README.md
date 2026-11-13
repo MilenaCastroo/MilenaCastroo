@@ -11,7 +11,7 @@
 ---
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=python,fastapi,react,ts,postgres,docker,git,github,vscode" alt="Python, FastAPI, React, TypeScript, PostgreSQL, Docker, Git, GitHub e VS Code">
+  <img src="https://skillicons.dev/icons?i=python,fastapi,react,ts,postgres,docker,git,github,vscode,figma" alt="Python, FastAPI, React, TypeScript, PostgreSQL, Docker, Git, GitHub, VS Code e Figma">
 </p>
 
 <picture>
