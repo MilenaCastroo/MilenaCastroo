@@ -1,0 +1,81 @@
+name: Atualizar GitHub Stats
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-stats
+  cancel-in-progress: false
+
+jobs:
+  atualizar-cards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      STATS_TOKEN_CONFIGURADO: ${{ secrets.PROFILE_STATS_TOKEN != '' }}
+    steps:
+      - name: Informar quando o token ainda não foi configurado
+        if: env.STATS_TOKEN_CONFIGURADO != 'true'
+        run: echo 'Configure PROFILE_STATS_TOKEN nos secrets do repositório e execute este workflow novamente.' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Baixar o README do perfil
+        if: env.STATS_TOKEN_CONFIGURADO == 'true'
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: main
+
+      - name: Gerar estatísticas
+        if: env.STATS_TOKEN_CONFIGURADO == 'true'
+        uses: stats-organization/github-readme-stats-action@2c498845f71017821efaad14293ebc736156ef21 # v2
+        with:
+          card: stats
+          options: username=${{ github.repository_owner }}&bg_color=20172F&title_color=CBA6FF&text_color=EDE3FF&border_color=9561D9&show_icons=true&icon_color=B98AF7&role=OWNER%2CORGANIZATION_MEMBER%2CCOLLABORATOR
+          path: profile/stats.svg
+          token: ${{ secrets.PROFILE_STATS_TOKEN }}
+          fail_on_error: "true"
+
+      - name: Gerar linguagens
+        if: env.STATS_TOKEN_CONFIGURADO == 'true'
+        uses: stats-organization/github-readme-stats-action@2c498845f71017821efaad14293ebc736156ef21 # v2
+        with:
+          card: top-langs
+          options: username=${{ github.repository_owner }}&bg_color=20172F&title_color=CBA6FF&text_color=EDE3FF&border_color=9561D9&layout=compact&langs_count=8&role=OWNER%2CORGANIZATION_MEMBER%2CCOLLABORATOR
+          path: profile/top-langs.svg
+          token: ${{ secrets.PROFILE_STATS_TOKEN }}
+          fail_on_error: "true"
+
+      - name: Publicar cards no perfil
+        if: env.STATS_TOKEN_CONFIGURADO == 'true'
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+
+          readme = Path("README.md")
+          content = readme.read_text(encoding="utf-8")
+          assets = {
+              "api?": "./profile/stats.svg",
+              "api/top-langs/?": "./profile/top-langs.svg",
+          }
+          for endpoint, asset in assets.items():
+              url = f"https://github-stats-extended.vercel.app/{endpoint}"
+              pattern = r'src="' + re.escape(url) + r'[^"]+"'
+              content = re.sub(pattern, f'src="{asset}"', content, count=1)
+          readme.write_text(content, encoding="utf-8")
+          PY
+
+          git add README.md profile/stats.svg profile/top-langs.svg
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -m 'Atualiza os cards do perfil'
+          git push origin HEAD:main
