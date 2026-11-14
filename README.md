@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=python,fastapi,react,ts,postgres,docker,git,github,vscode,figma" alt="Python, FastAPI, React, TypeScript, PostgreSQL, Docker, Git, GitHub, VS Code e Figma">
+  <img height="36" src="https://skillicons.dev/icons?i=python,fastapi,react,ts,postgres,docker,git,github,vscode,figma" alt="Python, FastAPI, React, TypeScript, PostgreSQL, Docker, Git, GitHub, VS Code e Figma">
 </p>
 
 <picture>
