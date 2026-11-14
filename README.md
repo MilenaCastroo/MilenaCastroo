@@ -3,8 +3,8 @@
 </p>
 
 <p align="center">
-  <img height="130" src="https://github-stats-extended.vercel.app/api?username=MilenaCastroo&amp;bg_color=20172F&amp;title_color=CBA6FF&amp;text_color=EDE3FF&amp;border_color=9561D9&amp;show_icons=true&amp;icon_color=B98AF7" alt="Estatísticas de Milena Castro no GitHub">
-  <img height="130" src="https://github-stats-extended.vercel.app/api/top-langs/?username=MilenaCastroo&amp;bg_color=20172F&amp;title_color=CBA6FF&amp;text_color=EDE3FF&amp;border_color=9561D9&amp;layout=compact&amp;langs_count=8&amp;role=OWNER%2CORGANIZATION_MEMBER%2CCOLLABORATOR" alt="Linguagens mais usadas por Milena Castro no GitHub">
+  <img height="130" src="./profile/stats.svg" alt="Estatísticas de Milena Castro no GitHub">
+  <img height="130" src="./profile/top-langs.svg" alt="Linguagens mais usadas por Milena Castro no GitHub">
 </p>
 
 <p align="center">
