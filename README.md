@@ -11,7 +11,4 @@
   <img height="36" src="https://skillicons.dev/icons?i=python,fastapi,react,ts,postgres,docker,git,github,vscode,figma" alt="Python, FastAPI, React, TypeScript, PostgreSQL, Docker, Git, GitHub, VS Code e Figma">
 </p>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MilenaCastroo/MilenaCastroo/output/snake-dark.svg">
-  <img width="100%" src="https://raw.githubusercontent.com/MilenaCastroo/MilenaCastroo/output/snake.svg" alt="Cobrinha lilás animada no meu gráfico de contribuições">
-</picture>
+<img width="100%" src="https://raw.githubusercontent.com/MilenaCastroo/MilenaCastroo/output/snake-dark.svg" alt="Cobrinha lilás animada no meu gráfico de contribuições">
